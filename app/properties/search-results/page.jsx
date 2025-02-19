@@ -8,8 +8,11 @@ import { convertToSerializeableObject } from "@/utils/convertToObject";
 
 
 
-const SearchResultsPage = async ({ searchParams: { location, propertyType } }) => {
+const SearchResultsPage = async ({ searchParams}) => {
     await connectedDB();
+
+    const location = searchParams?.location || '';
+    const propertyType = searchParams?.propertyType || '';
 
     const locationPattern = new RegExp(location, 'i');
 
@@ -26,8 +29,10 @@ const SearchResultsPage = async ({ searchParams: { location, propertyType } }) =
     };
     // Only check for property if its not 'All'
     if (propertyType && propertyType !== 'All') {
-        const typePattern = new RegExp(propertyType, 'i');
-        query.typePattern;
+        // const typePattern = new RegExp(propertyType, 'i');
+        // query.typePattern;
+
+        query.type = new RegExp(propertyType, 'i'); // Fix the typo here
     }
 
     const propertiesQueryResult = await Property.find(query).lean();
