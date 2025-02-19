@@ -14,7 +14,7 @@ const PropertyContactFrom = ({ property }) => {
 
   useEffect(() => {
     if(state.error) toast.error(state.error);
-        if(state.submitted) toast.success('Message sent successfully');
+    if(state.submitted) toast.success('Message sent successfully');
     }, [state]);
   
 
